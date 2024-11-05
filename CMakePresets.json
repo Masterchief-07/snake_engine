@@ -1,0 +1,36 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired":{
+        "major":3,
+        "minor":28,
+        "patch":3
+    },
+    "configurePresets":[
+        {
+            "name": "COMMON",
+            "description": "COMMON",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "installDir": "${sourceDir}/install/${presetName}"
+        },
+        {
+            "name": "linux_debug",
+            "displayName": "linux debug",
+            "inherits": "COMMON",
+            "condition": {
+                "type": "inList",
+                "string": "${hostSystemName}",
+                "list":[
+                    "Linux",
+                    "Darwin"
+                ]
+            },
+            "cacheVariables": {
+                "CMAKE_C_COMPILER":"clang",
+                "CMAKE_CXX_COMPILER":"clang++",
+                "CMAKE_BUILD_TYPE":"Debug"
+            }
+        }
+    ]
+}
