@@ -44,7 +44,8 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
 #setting external dependencies
 include(Dependencies.cmake)
-setup_depencies()
+setup_dependencies()
+install_dependencies("fmt" "raylib")
 include(${CMAKE_TOOLCHAIN_FILE})
 
 find_package(Raylib CONFIG REQUIRED)
