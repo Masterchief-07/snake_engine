@@ -46,16 +46,20 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 #setting external dependencies
 include(Dependencies.cmake)
 setup_dependencies()
-install_dependencies("fmt" "raylib" "catch2")
-include(${CMAKE_TOOLCHAIN_FILE})
+install_dependencies("fmt" "raylib" "catch2" "glfw3")
+#include(${CMAKE_TOOLCHAIN_FILE})
 
-find_package(Raylib CONFIG REQUIRED)
+find_package(raylib CONFIG REQUIRED)
+find_package(glfw3 CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${RAYLIB_INCLUDE_DIR})
 
 target_link_libraries(
     ${PROJECT_NAME}
-    PUBLIC
+    PRIVATE
     fmt::fmt
+    glfw
     raylib
 )
 
