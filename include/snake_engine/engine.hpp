@@ -1,5 +1,4 @@
 #pragma once
-#include <raylib.h>
 #include <string>
 #include <snake_engine/playground.hpp>
 #include <snake_engine/snake.hpp>
@@ -7,6 +6,10 @@
 namespace se{
 
 class Engine{
+    enum class Status{
+        RUNNING=0,
+        FINISH,
+    };
     
     public:
     Engine();
@@ -30,7 +33,7 @@ class Engine{
 
     bool running();
     void step(); //update game state
-    void draw(); //draw game
+    void running(); //draw game
 
     private:
     std::string m_title;

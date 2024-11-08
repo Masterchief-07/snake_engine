@@ -38,4 +38,6 @@ void Snake::add_body(size_t count){
         );
 }
 
+void Snake::draw(){
 
+}

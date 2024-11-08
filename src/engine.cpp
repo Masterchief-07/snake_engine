@@ -1,5 +1,6 @@
 #include<snake_engine/engine.hpp>
-#include<iostream>
+#include<raylib.h>
+//#include<iostream>
 
 using namespace se;
 
@@ -55,7 +56,7 @@ void Engine::step(){
     this->m_playground.checkCollision(this->m_snake);
 }
 
-void Engine::draw(){
+bool Engine::running(){
    this->m_playground.draw(); 
    this->m_snake.draw();
 }

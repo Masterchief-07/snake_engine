@@ -1,4 +1,5 @@
 #include <snake_engine/playground.hpp>
+#include <raylib.h>
 using namespace se;
 
 PlayGround::PlayGround(int width, int height):m_window{width, height}, m_food{width/2, height/2}{
@@ -41,3 +42,6 @@ PlayGround::Collision PlayGround::checkCollision(const Snake& snake){
     return PlayGround::Collision::NONE;
 }
 
+void PlayGround::draw(){
+
+}
