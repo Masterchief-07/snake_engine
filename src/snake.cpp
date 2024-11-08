@@ -14,27 +14,28 @@ Snake::~Snake(){
 
 }
 
-void Snake::move(Snake::Direction dir, int speed=1){
-    auto& dir_v = this->M_DIRECTIONS.at(dir);
+void Snake::move(Snake::Direction dir, int speed){
+    auto& dir_v = this->DIRECTIONS.at(dir);
 
     auto m_1 = this->m_body.front();
-    for(int i=1; i<this->m_body.size(); i++){
+    for(size_t i=1; i<this->m_body.size(); i++){
         auto& secondo = this->m_body[i];
         Pos m_2{secondo};
         secondo.first = m_1.first;
         secondo.second = m_1.second;
-        m_1 = m2;
+        m_1 = m_2;
     }
 
     this->m_body.front().first = this->m_body.front().first + dir_v.first * speed;
-    this->m_body.front().second = this->m_body.second().first + dir_v.second * speed;
+    this->m_body.front().second = this->m_body.front().second + dir_v.second * speed;
 }
 
-void add_body(int count=1){
+void Snake::add_body(size_t count){
     const auto& last = this->m_body.back();
-    this->m_body.push_back(
-        pos{last.first, last.second}
-    );
+    for(size_t i=0; i < count; i++)
+        this->m_body.push_back(
+            Pos{last.first, last.second}
+        );
 }
 
 

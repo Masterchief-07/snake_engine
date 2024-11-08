@@ -27,6 +27,7 @@ class PlayGround{
     inline const Pos& getWindow() const {return this->m_window;}
 
     void setFoodRandom();
+    void draw();
     Collision checkCollision(const Snake& snake);
     private:
     Pos m_window, m_food;

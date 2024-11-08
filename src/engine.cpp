@@ -8,7 +8,7 @@ Engine::Engine():Engine{"window", 400, 800}{
 }
 
 Engine::Engine(std::string title, int width, int height)
-:m_title{title}, m_width{width}, m_height{height}, m_fps{60}{
+:m_title{title}, m_width{width}, m_height{height}, m_fps{60}, m_snake{}, m_playground{width, height}{
    InitWindow(
            this->m_width,
            this->m_height,
@@ -51,8 +51,8 @@ bool Engine::running(){
 }
 
 void Engine::step(){
-    this->m_snake.step();
-    this->m_playground.check(this->m_snake);
+    this->m_snake.move(Snake::Direction::LEFT);
+    this->m_playground.checkCollision(this->m_snake);
 }
 
 void Engine::draw(){

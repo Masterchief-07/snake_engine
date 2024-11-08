@@ -1,6 +1,6 @@
 #pragma once
+#include <raylib.h>
 #include <string>
-#include "raylib.h"
 #include <snake_engine/playground.hpp>
 #include <snake_engine/snake.hpp>
 
@@ -24,7 +24,9 @@ class Engine{
     inline int getFps() const {return this->m_fps;}
     inline std::string getTitle() const {return this->m_title;}
     inline Snake& getSnake() {return this->m_snake;}
+    inline const Snake& getSnake() const {return this->m_snake;}
     inline PlayGround& getPlayGround() {return this->m_playground;}
+    inline const PlayGround& getPlayGround() const {return this->m_playground;}
 
     bool running();
     void step(); //update game state

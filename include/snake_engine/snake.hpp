@@ -26,7 +26,8 @@ class Snake{
     ~Snake();
 
     void move(Direction dir, int speed=1);
-    void add_body(int count);
+    void add_body(size_t count=1);
+    void draw();
 
     inline const std::vector<Pos>& getBody() const { return this->m_body;}
     inline const Pos& getHead() const { return this->m_body.front();}
