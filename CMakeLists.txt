@@ -13,12 +13,7 @@ option(BUILD_SHARED_LIBS "BUILD SHARE LIBRARIES" OFF)
 option(SNAKE_ENGINE_BUILD_TESTS "BUILD TESTS" OFF)
 option(SNAKE_ENGINE_BUILD_DOCS "BUILD DOCS" OFF)
 
-#compile options
-if(MSVC)
-    add_compile_options(/W4 /WX)
-else()
-    add_compile_options(-Wall -Wextra -Wpedantic -Werror)
-endif()
+include(Dependencies.cmake)
 
 #library sources
 set(LIBRARY_SOURCES
@@ -33,7 +28,8 @@ set(LIBRARY_SOURCES
 
 add_library(${PROJECT_NAME} ${LIBRARY_SOURCES})
 
-target_include_directories(${PROJECT_NAME} 
+target_include_directories(
+    ${PROJECT_NAME} 
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
@@ -43,23 +39,16 @@ target_include_directories(${PROJECT_NAME}
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
-#setting external dependencies
-include(Dependencies.cmake)
-setup_dependencies()
-install_dependencies("fmt" "raylib" "catch2" "glfw3")
-#include(${CMAKE_TOOLCHAIN_FILE})
-
-find_package(raylib CONFIG REQUIRED)
-find_package(glfw3 CONFIG REQUIRED)
-find_package(fmt CONFIG REQUIRED)
-
-target_include_directories(${PROJECT_NAME} PUBLIC ${RAYLIB_INCLUDE_DIR})
+#compile options
+if(MSVC)
+    add_compile_options(/W4 /WX)
+else()
+    add_compile_options(-Wall -Wextra -Wpedantic -Werror)
+endif()
 
 target_link_libraries(
     ${PROJECT_NAME}
-    PRIVATE
-    fmt::fmt
-    glfw
+    PUBLIC
     raylib
 )
 
